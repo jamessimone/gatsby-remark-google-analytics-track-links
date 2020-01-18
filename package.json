@@ -1,0 +1,29 @@
+{
+  "name": "gatsby-remark-google-analytics-track-links",
+  "version": "0.0.3",
+  "description": "Track internal and external clicks from links embedded in your markdown",
+  "main": "index.js",
+  "author": "James Simone",
+  "license": "MIT",
+  "dependencies": {
+    "unist-util-visit": "2.0.1"
+  },
+  "peerDependencies": {
+    "gatsby": ">=2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamessimone/gatsby-remark-google-analytics-track-links"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "google analytics",
+    "gatsby-transformer-remark",
+    "remark",
+    "markdown",
+    "link",
+    "tracking",
+    "click"
+  ]
+}
