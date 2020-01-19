@@ -8,5 +8,7 @@ module.exports = {
     eventAction: `click`,
     eventLabel: false
   },
-  runInDev: false
+  rel: "noopener nofollow noreferrer",
+  runInDev: false,
+  target: "_blank"
 };

@@ -1,6 +1,6 @@
-import defaults from "./defaults";
-import isLocalLink from "./is-local-link";
-import mergeObjects from "./merge-objects";
+const defaults = require("./defaults");
+const isLocalLink = require("./is-local-link");
+const mergeObjects = require("./merge-objects");
 
 const shouldRun = options =>
   typeof window !== "undefined" &&
@@ -37,15 +37,12 @@ const addOnClick = options => {
   }
 };
 
-export function onRouteUpdate({ location, prevLocation }, pluginOptions) {
-  const options = mergeObjects(defaults, pluginOptions);
-  const initialRender = !!location && !prevLocation;
-  const routeHasChanged =
-    !!prevLocation && location.pathname !== prevLocation.pathname;
+module.exports = {
+  onRouteUpdate({ location, prevLocation }, pluginOptions) {
+    const options = mergeObjects(defaults, pluginOptions);
 
-  if (initialRender || routeHasChanged) {
     addOnClick(options);
-  }
 
-  return null;
-}
+    return null;
+  }
+};

@@ -14,18 +14,12 @@ const tagAnchorWithClassName = (node, options) => {
 
   const startElement = `<a class="${options.className}" href="${url}" title="${titleAttribute}"`;
   const targetAndRel = shouldAddTargetAndRel
-    ? `target="${options.target}" rel="${options.rel}"`
+    ? ` target="${options.target}" rel="${options.rel}"`
     : "";
   const endElement = `>${innerText}</a>`;
   const anchorElement = startElement + targetAndRel + endElement;
 
   return anchorElement;
-};
-
-const gatsbyNodeDefaults = {
-  className: defaults.className,
-  rel: "noopener nofollow noreferrer",
-  target: "_blank"
 };
 
 module.exports = ({ markdownAST }, pluginOptions) => {
@@ -35,7 +29,7 @@ module.exports = ({ markdownAST }, pluginOptions) => {
     linkNodes.push(linkNode);
   });
 
-  const options = mergeObjects(gatsbyNodeDefaults, pluginOptions);
+  const options = mergeObjects(defaults, pluginOptions);
   for (var index = 0; index < linkNodes.length; index++) {
     const node = linkNodes[index];
     const html = tagAnchorWithClassName(node, options);
