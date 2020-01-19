@@ -7,7 +7,7 @@ module.exports = function(href, localLinkMatch) {
       return true;
     }
   }
-  if (shouldContinue && !href.match(/http[s]*:\/\/[www.]/)) {
+  if (shouldContinue && !href.match(/http(s|.*)/)) {
     return true;
   }
 

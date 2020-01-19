@@ -33,7 +33,7 @@ plugins: [
 
 ## Plugin Options
 
-This plugin adds `target="_blank" rel="noopener nofollow noreferrer"` properties by default to your anchor tags, as well as a targetable class name (`"siteLink"`). Here are all the defaults:
+This plugin adds `target="_blank" rel="noopener nofollow noreferrer"` properties by default to your external links, as well as a targetable class name (`"siteLink"` by default). Here are all the defaults:
 
 ```javascript
 {
@@ -46,7 +46,9 @@ This plugin adds `target="_blank" rel="noopener nofollow noreferrer"` properties
     eventAction: `click`,
     eventLabel: false //pass a string to customize
   },
-  runInDev: false //update to true if your version of GA is available in dev and you want to test tracking
+  rel: "noopener nofollow noreferrer", //added to each anchor tag
+  runInDev: false, //update to true if your version of GA is available in dev and you want to test tracking
+  target: "_blank" // added to each anchor tag
 }
 ```
 
@@ -76,11 +78,17 @@ plugins: [
 
 ### Options in depth
 
-- `className` -- the class added to each anchor tag, which is how the onclick handler ends up being added to each of the elements on page load
-- `localLinkMatch`-- string or regex if you need additional matching options for catching internal links; I think most people end up using a combination of `gatsby-remark-relative-links` and `gatsby-plugin-catch-links`, but if you needed to catch "absolute-path-y" links in your Markdown that are in fact local links, then this option will let you properly flag the links as internal ones for your GA events
-- `gaOptions.internalLinkTitle` -- if you aren't going to use your own custom event category this is the category that will be used for internal links
-- `gaOptions.externalLinkTitle` -- same but for external links
-- `gaOptions.eventCategory` -- supply this string to override the choices for internal / external link titles
-- `gaOptions.eventAction` -- "click" by default, or your own string
-- `gaOptions.eventLabel` -- if you don't supply your own string, defaults to `event.currentTarget.href`; the URL of the link that was clicked, in other words
-- `runInDev` -- by default, this plugin does not run while in Dev mode; this mirrors the settings for `gatsby-plugin-google-analytics`. If you are installing the GA tag on your own and want to test event sending in development, you can set this flag to `true` to test. Otherwise, you can test by running `gatsby build` and then `gatsby serve`.
+- `className`: the class added to each anchor tag
+- `localLinkMatch`: string or regex if you need additional matching options for catching internal links; I think most people end up using a combination of `gatsby-remark-relative-links` and `gatsby-plugin-catch-links`, but if you needed to catch "absolute-path-y" links in your Markdown that are in fact local links, then this option will let you properly flag the links as internal ones for your GA events
+- `gaOptions.internalLinkTitle`: if you aren't going to use your own custom event category this is the category that will be used for internal links
+- `gaOptions.externalLinkTitle`: same but for external links
+- `gaOptions.eventCategory`: supply this string to override the choices for internal / external link titles
+- `gaOptions.eventAction`: "click" by default, or your own string
+- `gaOptions.eventLabel`: if you don't supply your own string, defaults to `event.currentTarget.href`; the URL of the link that was clicked, in other words
+- `rel`: defines the relationship from the current page to the linked page. Defaults to `noopener nofollow noreferrer` for external links; is not added to internal links
+- `runInDev`: by default, this plugin does not run while in Dev mode; this mirrors the settings for `gatsby-plugin-google-analytics`. If you are installing the GA tag on your own and want to test event sending in development, you can set this flag to `true` to test. Otherwise, you can test by running `gatsby build` and then `gatsby serve`
+- `target`: where to open the link. Defaults to `_blank` for external links; is not added for internal links
+
+## Contributions
+
+Contributions are welcome, however I would ask that all feature requests come with additional tests added. You are also welcome to contribute in the way of adding tests, though heavy test refactors may be turned away unless there is a pressing need for said refactor. Additionally, I would ask that all PR's be submitted with the default `prettier` formatting.
