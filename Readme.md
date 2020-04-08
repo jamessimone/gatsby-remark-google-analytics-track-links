@@ -24,10 +24,10 @@ plugins: [
     options: {
       plugins: [
         //...
-        `gatsby-remark-google-analytics-track-links`
-      ]
-    }
-  }
+        `gatsby-remark-google-analytics-track-links`,
+      ],
+    },
+  },
 ];
 ```
 
@@ -67,12 +67,12 @@ plugins: [
           options: {
             target: "someValue",
             rel: "noopener noreferrer",
-            className: "theClassIdLikeInstead"
-          }
-        }
-      ]
-    }
-  }
+            className: "theClassIdLikeInstead",
+          },
+        },
+      ],
+    },
+  },
 ];
 ```
 
@@ -92,3 +92,7 @@ plugins: [
 ## Contributions
 
 Contributions are welcome, however I would ask that all feature requests come with additional tests added. You are also welcome to contribute in the way of adding tests, though heavy test refactors may be turned away unless there is a pressing need for said refactor. Additionally, I would ask that all PR's be submitted with the default `prettier` formatting.
+
+Thanks to:
+
+- [Gabriel Cutrini](/https://github.com/gcutrini) for contributing to 0.0.6 by [fixing links with inline content](https://github.com/jamessimone/gatsby-remark-google-analytics-track-links/pull/4/files)!

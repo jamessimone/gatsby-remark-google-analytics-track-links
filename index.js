@@ -2,11 +2,11 @@ const visit = require("unist-util-visit");
 
 const defaults = require("./defaults");
 const isLocalLink = require("./is-local-link");
-const mergeObjects = require("./merge-objects");
 const linkInnerText = require("./link-inner-text");
+const mergeObjects = require("./merge-objects");
 
 const tagAnchorWithClassName = (node, options) => {
-  const { url, title, children } = node;
+  const { url, title } = node;
 
   const innerText = linkInnerText(node);
   const titleAttribute = !!title ? title : innerText;
@@ -26,7 +26,7 @@ const tagAnchorWithClassName = (node, options) => {
 module.exports = ({ markdownAST }, pluginOptions) => {
   const linkNodes = [];
 
-  visit(markdownAST, ["link", "linkReference"], linkNode => {
+  visit(markdownAST, ["link", "linkReference"], (linkNode) => {
     linkNodes.push(linkNode);
   });
 

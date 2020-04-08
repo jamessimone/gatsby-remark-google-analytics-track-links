@@ -7,9 +7,9 @@ test("it should work without links present in markdown", () => {
     data: {
       hName: "i",
       hProperties: { className: "foo" },
-      hChildren: [{ type: "text", value: "bar" }]
+      hChildren: [{ type: "text", value: "bar" }],
     },
-    children: [{ type: "text", value: "baz" }]
+    children: [{ type: "text", value: "baz" }],
   };
   const parsedMarkdown = remarkPlugin({ markdownAST }, defaults);
   expect(parsedMarkdown).toEqual(markdownAST);
@@ -20,7 +20,7 @@ test("it should transform external links properly from markdown", () => {
     type: "link",
     title: "foo",
     url: "http://foo.com",
-    children: [{ type: "text", value: "baz" }]
+    children: [{ type: "text", value: "baz" }],
   };
   const parsedMarkdown = remarkPlugin({ markdownAST }, defaults);
   expect(parsedMarkdown.value).toEqual(
@@ -33,7 +33,7 @@ test("it should transform internal links properly from markdown", () => {
     type: "link",
     title: "foo",
     url: "/foo",
-    children: [{ type: "text", value: "baz" }]
+    children: [{ type: "text", value: "baz" }],
   };
   const parsedMarkdown = remarkPlugin({ markdownAST }, defaults);
   expect(parsedMarkdown.value).toEqual(
@@ -45,7 +45,7 @@ test("it should use fallback title if title is not present", () => {
   const markdownAST = {
     type: "link",
     url: "/foo",
-    children: [{ type: "text", value: "baz" }]
+    children: [{ type: "text", value: "baz" }],
   };
   const parsedMarkdown = remarkPlugin({ markdownAST }, defaults);
   expect(parsedMarkdown.value).toEqual(
@@ -59,10 +59,12 @@ test("it should transform links properly from markdown containing inline content
     type: "link",
     title: null,
     url: "/foo",
-    children: [{
-      type: "strong",
-      children: [{ type: "text", value: "baz" }]
-    }]
+    children: [
+      {
+        type: "strong",
+        children: [{ type: "text", value: "baz" }],
+      },
+    ],
   };
   const parsedMarkdown = remarkPlugin({ markdownAST }, defaults);
   expect(parsedMarkdown.value).toEqual(
