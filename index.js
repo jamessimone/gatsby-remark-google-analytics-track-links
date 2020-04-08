@@ -3,11 +3,12 @@ const visit = require("unist-util-visit");
 const defaults = require("./defaults");
 const isLocalLink = require("./is-local-link");
 const mergeObjects = require("./merge-objects");
+const linkInnerText = require("./link-inner-text");
 
 const tagAnchorWithClassName = (node, options) => {
   const { url, title, children } = node;
 
-  const innerText = children.length > 0 ? children[0].value : "";
+  const innerText = linkInnerText(node);
   const titleAttribute = !!title ? title : innerText;
 
   const shouldAddTargetAndRel = !isLocalLink(url, options.localLinkMatch);

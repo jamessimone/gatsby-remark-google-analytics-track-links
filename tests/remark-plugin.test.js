@@ -52,3 +52,20 @@ test("it should use fallback title if title is not present", () => {
     `<a class="siteLink" href="/foo" title="baz">baz</a>`
   );
 });
+
+// [**baz**](/foo)
+test("it should transform links properly from markdown containing inline content in link text", () => {
+  const markdownAST = {
+    type: "link",
+    title: null,
+    url: "/foo",
+    children: [{
+      type: "strong",
+      children: [{ type: "text", value: "baz" }]
+    }]
+  };
+  const parsedMarkdown = remarkPlugin({ markdownAST }, defaults);
+  expect(parsedMarkdown.value).toEqual(
+    `<a class="siteLink" href="/foo" title="baz">baz</a>`
+  );
+});
