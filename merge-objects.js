@@ -13,7 +13,7 @@ const mergeObjects = function (defaultObj, userDefinedObj) {
       base[key] = defaultObj[key];
     }
   });
-  if (!!userDefinedObj && !!userDefinedObj.allowFollowLinks && !!base.rel) {
+  if (!!userDefinedObj && userDefinedObj.allowFollowLinks && !!base.rel) {
     delete base.rel;
   }
   return base;

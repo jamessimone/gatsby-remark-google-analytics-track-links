@@ -37,7 +37,7 @@ test("it should transform internal links properly from markdown", () => {
   };
   const parsedMarkdown = remarkPlugin({ markdownAST }, defaults);
   expect(parsedMarkdown.value).toEqual(
-    `<a class="siteLink" href="/foo" title="foo">baz</a>`
+    '<a class="siteLink" href="/foo" title="foo" rel="noopener nofollow noreferrer">baz</a>'
   );
 });
 
@@ -49,7 +49,7 @@ test("it should use fallback title if title is not present", () => {
   };
   const parsedMarkdown = remarkPlugin({ markdownAST }, defaults);
   expect(parsedMarkdown.value).toEqual(
-    `<a class="siteLink" href="/foo" title="baz">baz</a>`
+    '<a class="siteLink" href="/foo" title="baz" rel="noopener nofollow noreferrer">baz</a>'
   );
 });
 
@@ -68,6 +68,6 @@ test("it should transform links properly from markdown containing inline content
   };
   const parsedMarkdown = remarkPlugin({ markdownAST }, defaults);
   expect(parsedMarkdown.value).toEqual(
-    `<a class="siteLink" href="/foo" title="baz">baz</a>`
+    '<a class="siteLink" href="/foo" title="baz" rel="noopener nofollow noreferrer">baz</a>'
   );
 });

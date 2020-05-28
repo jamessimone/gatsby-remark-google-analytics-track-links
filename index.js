@@ -16,7 +16,7 @@ const tagAnchorWithClassName = (node, options) => {
   const startElement = `<a class="${options.className}" href="${url}" title="${titleAttribute}"`;
   let targetAndRel = shouldAddTarget ? ` target="${options.target}"` : "";
   if (!options.allowFollowLinks) {
-    targetAndRel += `rel="${options.rel}"`;
+    targetAndRel += ` rel="${options.rel}"`;
   }
   const endElement = `>${innerText}</a>`;
   const anchorElement = startElement + targetAndRel + endElement;

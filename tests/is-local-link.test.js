@@ -19,3 +19,8 @@ test("it should detect absolute internal link with local link match", () => {
   const local = isLocalLink("https://www.my-url.com/my-url", "www.my-url.com");
   expect(local).toEqual(true);
 });
+
+test("match should not blow up on null href", () => {
+  const local = isLocalLink(null);
+  expect(local).toEqual(false);
+});
