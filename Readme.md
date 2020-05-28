@@ -33,10 +33,11 @@ plugins: [
 
 ## Plugin Options
 
-This plugin adds `target="_blank" rel="noopener nofollow noreferrer"` properties by default to your external links, as well as a targetable class name (`"siteLink"` by default). Here are all the defaults:
+This plugin adds `target="_blank" rel="noopener nofollow noreferrer"` properties by default to your external links, as well as a targetable class name (`"siteLink"` by default). You can opt-out of adding the `rel` attribute, if desired. Here are all the defaults:
 
 ```javascript
 {
+  allowFollowLinks: false, //set to true to remove the "rel" attribute entirely
   className: "siteLink",
   localLinkMatch: false, //otherwise should be a string / regex
   gaOptions: {
@@ -78,6 +79,7 @@ plugins: [
 
 ### Options in depth
 
+- `allowFollowLinks`: removes the `rel` attribute entirely, allowing you to take advantage of "follow" links
 - `className`: the class added to each anchor tag
 - `localLinkMatch`: string or regex if you need additional matching options for catching internal links; I think most people end up using a combination of `gatsby-remark-relative-links` and `gatsby-plugin-catch-links`, but if you needed to catch "absolute-path-y" links in your Markdown that are in fact local links, then this option will let you properly flag the links as internal ones for your GA events
 - `gaOptions.internalLinkTitle`: if you aren't going to use your own custom event category this is the category that will be used for internal links

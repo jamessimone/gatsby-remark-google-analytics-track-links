@@ -1,6 +1,6 @@
 {
   "name": "gatsby-remark-google-analytics-track-links",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Track internal and external clicks from links embedded in your markdown",
   "main": "index.js",
   "author": "James Simone",
@@ -9,8 +9,8 @@
     "unist-util-visit": "2.0.2"
   },
   "devDependencies": {
-    "jest": "25.3.0",
-    "prettier": "2.0.4"
+    "jest": "26.0.1",
+    "prettier": "2.0.5"
   },
   "peerDependencies": {
     "gatsby": ">=2.0.0"

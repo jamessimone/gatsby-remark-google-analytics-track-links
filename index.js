@@ -11,12 +11,13 @@ const tagAnchorWithClassName = (node, options) => {
   const innerText = linkInnerText(node);
   const titleAttribute = !!title ? title : innerText;
 
-  const shouldAddTargetAndRel = !isLocalLink(url, options.localLinkMatch);
+  const shouldAddTarget = !isLocalLink(url, options.localLinkMatch);
 
   const startElement = `<a class="${options.className}" href="${url}" title="${titleAttribute}"`;
-  const targetAndRel = shouldAddTargetAndRel
-    ? ` target="${options.target}" rel="${options.rel}"`
-    : "";
+  let targetAndRel = shouldAddTarget ? ` target="${options.target}"` : "";
+  if (!options.allowFollowLinks) {
+    targetAndRel += `rel="${options.rel}"`;
+  }
   const endElement = `>${innerText}</a>`;
   const anchorElement = startElement + targetAndRel + endElement;
 
