@@ -1,6 +1,6 @@
-const mergeObjects = function(defaultObj, userDefinedObj) {
+const mergeObjects = function (defaultObj, userDefinedObj) {
   const base = {};
-  Object.keys(defaultObj).forEach(key => {
+  Object.keys(defaultObj).forEach((key) => {
     const potentiallyDefinedProp = !!userDefinedObj && userDefinedObj[key];
     if (
       !!potentiallyDefinedProp &&
@@ -13,6 +13,9 @@ const mergeObjects = function(defaultObj, userDefinedObj) {
       base[key] = defaultObj[key];
     }
   });
+  if (!!userDefinedObj && !!userDefinedObj.allowFollowLinks && !!base.rel) {
+    delete base.rel;
+  }
   return base;
 };
 

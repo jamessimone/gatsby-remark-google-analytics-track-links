@@ -1,4 +1,5 @@
 module.exports = {
+  allowFollowLinks: false,
   className: "siteLink",
   localLinkMatch: false,
   gaOptions: {
@@ -6,9 +7,9 @@ module.exports = {
     externalLinkTitle: "External Link",
     eventCategory: false,
     eventAction: `click`,
-    eventLabel: false
+    eventLabel: false,
   },
   rel: "noopener nofollow noreferrer",
   runInDev: false,
-  target: "_blank"
+  target: "_blank",
 };
