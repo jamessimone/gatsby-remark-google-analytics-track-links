@@ -12,10 +12,10 @@ const spyFunction = jest.fn();
 beforeAll(() => {
   mockAnchor.onclick = null;
   Object.defineProperty(global.document, "getElementsByClassName", {
-    value: getElementsByClassNameMock
+    value: getElementsByClassNameMock,
   });
   Object.defineProperty(global.window, "ga", {
-    value: spyFunction
+    value: spyFunction,
   });
 });
 
@@ -66,8 +66,8 @@ test("on click should send event to ga for internal links", () => {
     {
       eventCategory: defaults.gaOptions.internalLinkTitle,
       eventAction: defaults.gaOptions.eventAction,
-      eventLabel: mockClickEvent.currentTarget.href
-    }
+      eventLabel: mockClickEvent.currentTarget.href,
+    },
   ]);
 });
 
@@ -87,8 +87,8 @@ test("on click should send event to ga for external links", () => {
     {
       eventCategory: defaults.gaOptions.externalLinkTitle,
       eventAction: defaults.gaOptions.eventAction,
-      eventLabel: mockClickEvent.currentTarget.href
-    }
+      eventLabel: mockClickEvent.currentTarget.href,
+    },
   ]);
 });
 
@@ -108,7 +108,24 @@ test("on click should send events to ga for internal links with full url when th
     {
       eventCategory: defaults.gaOptions.internalLinkTitle,
       eventAction: defaults.gaOptions.eventAction,
-      eventLabel: mockClickEvent.currentTarget.href
-    }
+      eventLabel: mockClickEvent.currentTarget.href,
+    },
   ]);
+});
+
+test("it should send events to gtag if gtag exists and ga does not", () => {
+  global.window.ga = null;
+  Object.defineProperty(global.window, "gtag", {
+    value: spyFunction,
+  });
+
+  onRouteUpdate(
+    { location: { pathname: "hi" } },
+    { className: mockAnchor.class, runInDev: true }
+  );
+
+  const mockClickEvent = { currentTarget: { href: "/hi" } };
+  mockAnchor.onclick(mockClickEvent);
+
+  expect(spyFunction).toBeCalled();
 });

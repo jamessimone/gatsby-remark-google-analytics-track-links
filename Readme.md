@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/gatsby-remark-google-analytics-track-links/latest.svg?style=flat-square)](https://www.npmjs.com/package/gatsby-remark-google-analytics-track-links)
 
-This is a Gatsby Remark plugin that provides the same tracking that `gatsby-plugin-google-analytics`'s `OutboundLink` and `trackCustomEvent` accomplishes within your actual codebase: the ability to track link clicks to internal & external locations within your markdown. It provides an `onClick` handler to all links that come from Markdown in your site.
+This is a Gatsby Remark plugin that provides the same tracking that `gatsby-plugin-google-analytics`' (or `gatsby-plugin-google-gtag`)s `OutboundLink` and `trackCustomEvent` accomplishes within your actual codebase: the ability to track link clicks to internal & external locations within your markdown. It provides an `onClick` handler to all links that come from Markdown in your site.
 
 ## Installation
 
@@ -30,6 +30,10 @@ plugins: [
   },
 ];
 ```
+
+## Gtag Versus GA
+
+This plugin supports both the (now) legacy `window.ga` tag, and the newer `gtag`. The existence of the legacy `ga` tag is tested for first, and events are only sent to _one_ tag. Contributions are welcome for this looking to send events both to the legacy tag as well as `gtag`.
 
 ## Plugin Options
 
