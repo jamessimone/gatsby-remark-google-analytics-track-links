@@ -2,6 +2,10 @@
 
 All notable changes to `gatsby-remark-google-analytics-track-links` will be documented in this file.
 
+## 1.0.0 (2020-10-01)
+
+Added support for Gtag in addition to the old ga tag
+
 ## 0.0.4 (2020-01-19)
 
 Added tests, updated internal / external link validation, added `rel` and `target` to the documented defaults.
