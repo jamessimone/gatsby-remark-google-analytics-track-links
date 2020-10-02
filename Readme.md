@@ -33,7 +33,7 @@ plugins: [
 
 ## Gtag Versus GA
 
-This plugin supports both the (now) legacy `window.ga` tag, and the newer `gtag`. The existence of the legacy `ga` tag is tested for first, and events are only sent to _one_ tag. Contributions are welcome for this looking to send events both to the legacy tag as well as `gtag`.
+This plugin supports both the (now) legacy `window.ga` tag, and the newer `gtag`. If both tags exist on your site, events will be sent to _both_ tags (with the assumption being that most sites will only have one version of the tag).
 
 ## Plugin Options
 

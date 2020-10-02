@@ -14,8 +14,9 @@ beforeAll(() => {
   Object.defineProperty(global.document, "getElementsByClassName", {
     value: getElementsByClassNameMock,
   });
-  Object.defineProperty(global.window, "ga", {
-    value: spyFunction,
+  Object.defineProperties(global.window, {
+    ga: { value: spyFunction, writable: true },
+    gtag: { value: spyFunction, writable: true },
   });
 });
 
@@ -113,12 +114,7 @@ test("on click should send events to ga for internal links with full url when th
   ]);
 });
 
-test("it should send events to gtag if gtag exists and ga does not", () => {
-  global.window.ga = null;
-  Object.defineProperty(global.window, "gtag", {
-    value: spyFunction,
-  });
-
+test("it should send events to gtag if gtag exists", () => {
   onRouteUpdate(
     { location: { pathname: "hi" } },
     { className: mockAnchor.class, runInDev: true }
@@ -127,5 +123,14 @@ test("it should send events to gtag if gtag exists and ga does not", () => {
   const mockClickEvent = { currentTarget: { href: "/hi" } };
   mockAnchor.onclick(mockClickEvent);
 
-  expect(spyFunction).toBeCalled();
+  expect(spyFunction).toHaveBeenCalledTimes(2);
+  expect(spyFunction.mock.calls[1]).toEqual([
+    "event",
+    "Internal Link",
+    {
+      event_category: defaults.gaOptions.internalLinkTitle,
+      event_action: defaults.gaOptions.eventAction,
+      event_label: mockClickEvent.currentTarget.href,
+    },
+  ]);
 });
